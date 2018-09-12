@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="memStim.PaneController"
+            prefHeight="300.0" prefWidth="300.0" fx:id="MainPane">
+    <!--<children>-->
+        <!--<Rectangle height="100.0" width="100.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.leftAnchor="0.0" fill="black"/>-->
+        <!--<Rectangle height="100.0" width="100.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="100.0" AnchorPane.leftAnchor="100.0" fill="white"/>-->
+        <!--<Rectangle height="100.0" width="100.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="200.0" fill="black"/>-->
+        <!--<Rectangle height="100.0" width="100.0" AnchorPane.topAnchor="100.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="200.0" AnchorPane.leftAnchor="0.0" fill="white"/>-->
+        <!--<Rectangle height="100.0" width="100.0" AnchorPane.topAnchor="100.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.leftAnchor="100.0" fill="black"/>-->
+        <!--<Rectangle height="100.0" width="100.0" AnchorPane.topAnchor="100.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="200.0" fill="white"/>-->
+        <!--<Rectangle height="100.0" width="100.0" AnchorPane.topAnchor="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="200.0" AnchorPane.leftAnchor="0.0" fill="black"/>-->
+        <!--<Rectangle height="100.0" width="100.0" AnchorPane.topAnchor="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="100.0" AnchorPane.leftAnchor="100.0" fill="white"/>-->
+        <!--<Rectangle height="100.0" width="100.0" AnchorPane.topAnchor="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="200.0" fill="black"/>-->
+    <!--</children>-->
+</AnchorPane>
