@@ -1,0 +1,12 @@
+
+#BasicPurpleButton {
+    -fx-background-color: red;
+    -fx-background-radius: 50%;
+    -fx-background-image: url('addition-sign.png');
+    -fx-background-position: center;
+    -fx-background-size: 66%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 20px 20px;
+    -fx-fit-to-height: true;
+    -fx-fit-to-width: true;
+}
