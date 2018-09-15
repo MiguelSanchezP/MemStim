@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="memStim.MainWindowController"
+            prefHeight="600.0" prefWidth="600.0" fx:id="MainPane">
+    <children>
+        <fx:define>
+            <Image fx:id="btnImage" url="@pencil.png"/>
+        </fx:define>
+        <Button id="BasicPurpleButton" stylesheets="@ButtonStyle.css" mnemonicParsing="false" />
+    </children>
+</AnchorPane>
+
+        <!--AnchorPane.topAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0"-->
