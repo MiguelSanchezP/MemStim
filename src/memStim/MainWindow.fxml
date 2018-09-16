@@ -13,5 +13,6 @@
             <Button styleClass="logoutBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
             <Button styleClass="changeUserBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
             <Button styleClass="exitBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
+            <!--add a fullscreen button-->
         </HBox>
 </AnchorPane>
