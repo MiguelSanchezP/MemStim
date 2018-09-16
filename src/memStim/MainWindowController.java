@@ -2,6 +2,7 @@ package memStim;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 
 public class MainWindowController {
     /*
@@ -36,4 +37,15 @@ public class MainWindowController {
         primaryStage.setScene(scene);
         primaryStage.show();*/
 
+    @FXML
+    private AnchorPane APMainWindow;
+
+    public void initialize () {
+
+    }
+
+    @FXML
+    private void handleBtnPressed () {
+        System.out.println("Works good :)");
+    }
 }
