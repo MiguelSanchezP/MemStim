@@ -11,7 +11,8 @@ public class Main extends Application {
     public void start (Stage stage) throws Exception {
         stage.setTitle("MemStim");
         Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-        stage.setScene(new Scene (root, 600, 600));
+        stage.setScene(new Scene (root));
+        stage.setFullScreen(true);
         stage.show();
     }
 
