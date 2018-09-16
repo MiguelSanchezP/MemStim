@@ -4,7 +4,14 @@
 <?import javafx.scene.control.Button?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="memStim.MainWindowController"
-            prefHeight="600.0" prefWidth="600.0">
-    <Button id="BasicNewGameBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false" />
+            fx:controller="memStim.MainWindowController" fx:id="APMainWindow">
+        <HBox spacing="40" AnchorPane.leftAnchor="25.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" alignment="BASELINE_CENTER">
+            <Button styleClass="newGameBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
+            <Button styleClass="highScoreBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
+            <Button styleClass="staticsBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
+            <Button styleClass="settingsBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
+            <Button styleClass="logoutBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
+            <Button styleClass="changeUserBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
+            <Button styleClass="exitBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
+        </HBox>
 </AnchorPane>
