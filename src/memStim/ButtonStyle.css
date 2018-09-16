@@ -1,12 +1,103 @@
-
-#BasicNewGameBtn {
-    -fx-background-color: red;
+.newGameBtn {
+    -fx-background-color: white;
     -fx-background-radius: 50%;
-    -fx-background-image: url('addition-sign.png');
+    -fx-background-image: url('./Resources/Icons/NewGame.png');
     -fx-background-position: center;
     -fx-background-size: 66%;
     -fx-background-repeat: no-repeat;
-    -fx-padding: 20px 20px;
-    -fx-fit-to-height: true;
-    -fx-fit-to-width: true;
+    -fx-padding: 30px 30px;
+}
+.newGameBtn:hover {
+    -fx-padding: 50px 50px;
+    -fx-background-color: gray;
+}
+
+.highScoreBtn {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-background-image: url('./Resources/Icons/HighScore.png');
+    -fx-background-position: center;
+    -fx-background-size: 66%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30px 30px;
+}
+
+.highScoreBtn:hover {
+    -fx-background-color: gray;
+    -fx-padding: 50px 50px;
+}
+
+.staticsBtn {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-background-image: url('./Resources/Icons/Statics.png');
+    -fx-background-position: center;
+    -fx-background-size: 66%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30px 30px;
+}
+
+.staticsBtn:hover {
+    -fx-background-color: gray;
+    -fx-padding: 50px 50px;
+}
+
+.settingsBtn {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-background-image: url('./Resources/Icons/Settings.png');
+    -fx-background-position: center;
+    -fx-background-size: 66%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30px 30px;
+}
+
+.settingsBtn:hover {
+    -fx-background-color: gray;
+    -fx-padding: 50px 50px;
+}
+
+.logoutBtn {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-background-image: url('./Resources/Icons/Logout.png');
+    -fx-background-position: center;
+    -fx-background-size: 66%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30px 30px;
+}
+
+.logoutBtn:hover {
+    -fx-background-color: gray;
+    -fx-padding: 50px 50px;
+}
+
+.changeUserBtn {
+    -fx-background-color:white;
+    -fx-background-radius: 50%;
+    -fx-background-image: url('./Resources/Icons/ChangeUser.png');
+    -fx-background-position: center;
+    -fx-background-size: 66%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30px 30px;
+}
+
+.changeUserBtn:hover {
+    -fx-background-color: gray;
+    -fx-padding: 50px 50px;
+}
+
+.exitBtn {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-background-image: url('./Resources/Icons/Exit.png');
+    -fx-background-position: center;
+    -fx-background-size: 66%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30px 30px;
+}
+
+.exitBtn:hover {
+    -fx-background-color: gray;
+    -fx-padding: 50px 50px;
 }
