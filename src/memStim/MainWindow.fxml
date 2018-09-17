@@ -10,7 +10,7 @@
             <Button styleClass="highScoreBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
             <Button styleClass="staticsBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
             <Button styleClass="settingsBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
-            <Button styleClass="logoutBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
+            <Button styleClass="fullscreenBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
             <Button styleClass="changeUserBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
             <Button styleClass="exitBtn" stylesheets="@ButtonStyle.css" mnemonicParsing="false"/>
             <!--add a fullscreen button-->
