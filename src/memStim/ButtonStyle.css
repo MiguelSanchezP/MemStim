@@ -1,7 +1,7 @@
 .newGameBtn {
     -fx-background-color: white;
     -fx-background-radius: 50%;
-    -fx-background-image: url('./Resources/Icons/NewGame.png');
+    -fx-background-image: url('./Resources/Icons/png/NewGame.png');
     -fx-background-position: center;
     -fx-background-size: 66%;
     -fx-background-repeat: no-repeat;
@@ -9,13 +9,13 @@
 }
 .newGameBtn:hover {
     -fx-padding: 50px 50px;
-    -fx-background-color: gray;
+    -fx-background-color: lightgray;
 }
 
 .highScoreBtn {
     -fx-background-color: white;
     -fx-background-radius: 50%;
-    -fx-background-image: url('./Resources/Icons/HighScore.png');
+    -fx-background-image: url('./Resources/Icons/png/HighScore.png');
     -fx-background-position: center;
     -fx-background-size: 66%;
     -fx-background-repeat: no-repeat;
@@ -23,14 +23,14 @@
 }
 
 .highScoreBtn:hover {
-    -fx-background-color: gray;
+    -fx-background-color: lightgray;
     -fx-padding: 50px 50px;
 }
 
 .staticsBtn {
     -fx-background-color: white;
     -fx-background-radius: 50%;
-    -fx-background-image: url('./Resources/Icons/Statics.png');
+    -fx-background-image: url('./Resources/Icons/png/Statics.png');
     -fx-background-position: center;
     -fx-background-size: 66%;
     -fx-background-repeat: no-repeat;
@@ -38,14 +38,14 @@
 }
 
 .staticsBtn:hover {
-    -fx-background-color: gray;
+    -fx-background-color: lightgray;
     -fx-padding: 50px 50px;
 }
 
 .settingsBtn {
     -fx-background-color: white;
     -fx-background-radius: 50%;
-    -fx-background-image: url('./Resources/Icons/Settings.png');
+    -fx-background-image: url('./Resources/Icons/png/Settings.png');
     -fx-background-position: center;
     -fx-background-size: 66%;
     -fx-background-repeat: no-repeat;
@@ -53,29 +53,29 @@
 }
 
 .settingsBtn:hover {
-    -fx-background-color: gray;
+    -fx-background-color: lightgray;
     -fx-padding: 50px 50px;
 }
 
-.logoutBtn {
+.fullscreenBtn {
     -fx-background-color: white;
     -fx-background-radius: 50%;
-    -fx-background-image: url('./Resources/Icons/Logout.png');
+    -fx-background-image: url('./Resources/Icons/png/Fullscreen.png');
     -fx-background-position: center;
     -fx-background-size: 66%;
     -fx-background-repeat: no-repeat;
     -fx-padding: 30px 30px;
 }
 
-.logoutBtn:hover {
-    -fx-background-color: gray;
+.fullscreenBtn:hover {
+    -fx-background-color: lightgray;
     -fx-padding: 50px 50px;
 }
 
 .changeUserBtn {
     -fx-background-color:white;
     -fx-background-radius: 50%;
-    -fx-background-image: url('./Resources/Icons/ChangeUser.png');
+    -fx-background-image: url('./Resources/Icons/png/changeUser.png');
     -fx-background-position: center;
     -fx-background-size: 66%;
     -fx-background-repeat: no-repeat;
@@ -83,14 +83,14 @@
 }
 
 .changeUserBtn:hover {
-    -fx-background-color: gray;
+    -fx-background-color: lightgray;
     -fx-padding: 50px 50px;
 }
 
 .exitBtn {
     -fx-background-color: white;
     -fx-background-radius: 50%;
-    -fx-background-image: url('./Resources/Icons/Exit.png');
+    -fx-background-image: url('./Resources/Icons/png/Shutdown.png');
     -fx-background-position: center;
     -fx-background-size: 66%;
     -fx-background-repeat: no-repeat;
@@ -98,6 +98,6 @@
 }
 
 .exitBtn:hover {
-    -fx-background-color: gray;
+    -fx-background-color: lightgray;
     -fx-padding: 50px 50px;
 }
