@@ -39,13 +39,22 @@ public class MainWindowController {
 
     @FXML
     private AnchorPane APMainWindow;
+    @FXML
+    private Button btn1, btn2;
 
     public void initialize () {
 
     }
 
     @FXML
-    private void handleBtnPressed () {
-        System.out.println("Works good :)");
+    private void handleNewGameBtn () {
+        if (btn1.isVisible()) {
+            btn1.setVisible(false);
+            btn2.setVisible(false);
+        } else {
+            btn1.setVisible(true);
+            btn2.setVisible(true);
+        }
     }
+
 }
