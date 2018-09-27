@@ -5,8 +5,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
+import java.util.Random;
 
 public class MainWindowController {
     /*
@@ -55,12 +58,14 @@ public class MainWindowController {
         AnchorPane MainPane = new AnchorPane();
         int rows = 5;
         int columns = 5;
+        boolean coloured [];
         MainPane.setPrefWidth(600);
         MainPane.setPrefHeight(600);
         double height = MainPane.getPrefHeight();
         double width = MainPane.getPrefWidth();
         for (int i = 0; i<rows; i++) {
             for (int j=0; j<columns; j++) {
+                int random = (int)(Math.random()*2);
                 Rectangle square = new Rectangle();
                 double sqHeight = height/rows;
                 double sqWidth = width/columns;
@@ -70,12 +75,17 @@ public class MainWindowController {
                 MainPane.setBottomAnchor(square, sqHeight*(rows-i));
                 MainPane.setRightAnchor(square, sqWidth*(columns-j));
                 MainPane.setLeftAnchor(square, sqWidth*j);
-                if ((i+j)%2==0) {
+//                if ((i+j)%2==0) {
+//                    square.setFill (Color.BLACK);
+//                }else{
+//                    square.setFill (Color.WHITE);
+//                }
+                MainPane.getChildren().add(square);
+                if (random == 0) {
                     square.setFill (Color.BLACK);
                 }else{
-                    square.setFill (Color.WHITE);
+                    square.setFill(Color.WHITE);
                 }
-                MainPane.getChildren().add(square);
             }
         }
         Scene scene = new Scene (MainPane, 600, 600);
