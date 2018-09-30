@@ -1,7 +1,5 @@
 package memStim;
 
-import javafx.beans.InvalidationListener;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,17 +10,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-//import java.awt.event.MouseEvent;
-import javafx.event.Event;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
-import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 
 public class MainWindowController {
 
@@ -38,7 +25,6 @@ public class MainWindowController {
         MainPane.setPrefHeight(600);
         double height = MainPane.getPrefHeight();
         double width = MainPane.getPrefWidth();
-        int number = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 int random = (int) (Math.random() * 2);
