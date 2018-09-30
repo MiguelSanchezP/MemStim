@@ -19,6 +19,7 @@ public class MainWindowController {
     private Stage primaryStage = new Stage();
     private double x, y;
     private HashMap<Integer[], Boolean> configurations = new HashMap<>();
+    boolean prev = true;
 
     @FXML
     private void handleNewGameBtn() throws InterruptedException {
@@ -56,7 +57,15 @@ public class MainWindowController {
             public void handle(MouseEvent e) {
                 x = e.getX();
                 y = e.getY();
-                //add the method for the change color. add boolean if possible
+                int X = (int)(x/(width/rows));
+                int Y = (int)(y/(height/columns));
+                System.out.println(X + ", " + Y);
+                if (!prev) {
+                    Rectangle r = getNodeWithColumnAndIndex(MainPane, X, Y);
+                    if (r!=null) {
+                        r.setFill(Color.RED);
+                    }
+                }
             }
         });
         Scene scene = new Scene(MainPane, 600, 600);
@@ -69,6 +78,8 @@ public class MainWindowController {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                prev = false;
+                System.out.println("Prev disabled, gamemode ready");
                 //create the code to clean the gridpane and to make the application change with the clicked mouse
             }
         }, 2000);
