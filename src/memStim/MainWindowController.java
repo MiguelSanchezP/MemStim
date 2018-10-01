@@ -3,9 +3,12 @@ package memStim;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -23,6 +26,7 @@ public class MainWindowController {
 
     @FXML
     private void handleNewGameBtn() throws InterruptedException {
+        AnchorPane ap = new AnchorPane();
         GridPane MainPane = new GridPane();
         int rows = 5;
         int columns = 5;
@@ -52,6 +56,15 @@ public class MainWindowController {
                 }
             }
         }
+        ap.getChildren().add(MainPane);
+        MainPane.setAlignment(Pos.CENTER);
+        Button button = new Button();
+        button.setText("Confirm");
+        button.setPrefHeight(30.0);
+        ap.getChildren().add(button);
+        ap.setBottomAnchor(button, 0.0);
+        ap.setRightAnchor(button, 0.0);
+        ap.setBottomAnchor(MainPane, 30.0);
         MainPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
@@ -59,16 +72,19 @@ public class MainWindowController {
                 y = e.getY();
                 int X = (int)(x/(width/rows));
                 int Y = (int)(y/(height/columns));
-                System.out.println(X + ", " + Y);
                 if (!prev) {
                     Rectangle r = getNodeWithColumnAndIndex(MainPane, X, Y);
                     if (r!=null) {
-                        r.setFill(Color.RED);
+                        if (r.getFill().equals(Color.WHITE)) {
+                            r.setFill(Color.BLACK);
+                        }else{
+                            r.setFill(Color.WHITE);
+                        }
                     }
                 }
             }
         });
-        Scene scene = new Scene(MainPane, 600, 600);
+        Scene scene = new Scene(ap, 600, 630);
         primaryStage.setTitle("MemStim");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -79,7 +95,14 @@ public class MainWindowController {
             @Override
             public void run() {
                 prev = false;
-                System.out.println("Prev disabled, gamemode ready");
+                for (int i =0; i<rows; i++) {
+                    for (int j = 0; j <columns; j++) {
+                        Rectangle r = getNodeWithColumnAndIndex(MainPane, j, i);
+                        if (r!=null) {
+                            r.setFill(Color.WHITE);
+                        }
+                    }
+                }
                 //create the code to clean the gridpane and to make the application change with the clicked mouse
             }
         }, 2000);
