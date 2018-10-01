@@ -32,7 +32,6 @@ public class MainWindowController {
         GridPane MainPane = new GridPane();
         int rows = 5;
         int columns = 5;
-        int pos = 0;
         MainPane.setPrefWidth(600);
         MainPane.setPrefHeight(600);
         double height = MainPane.getPrefHeight();
