@@ -1,3 +1,5 @@
+/* Add the method to memorize the prev configuration and revise the current one (Button Confirm)*/
+
 package memStim;
 
 import javafx.collections.ObservableList;
@@ -13,7 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,15 +23,16 @@ public class MainWindowController {
 
     private Stage primaryStage = new Stage();
     private double x, y;
-    private HashMap<Integer[], Boolean> configurations = new HashMap<>();
-    boolean prev = true;
+    private ArrayList<Boolean> status= new ArrayList<>();
+    private boolean prev = true;
 
     @FXML
-    private void handleNewGameBtn() throws InterruptedException {
+    private void handleNewGameBtn() {
         AnchorPane ap = new AnchorPane();
         GridPane MainPane = new GridPane();
         int rows = 5;
         int columns = 5;
+        int pos = 0;
         MainPane.setPrefWidth(600);
         MainPane.setPrefHeight(600);
         double height = MainPane.getPrefHeight();
@@ -46,13 +49,12 @@ public class MainWindowController {
                 MainPane.setColumnIndex(square, j);
                 MainPane.setRowIndex(square, i);
                 square.setStroke(Color.GREY);
-                Integer[] numbers = {i, j};
                 if (random<1) {
                     square.setFill(Color.BLACK);
-                    configurations.put(numbers, true);
+                    status.add(i*5+j, Boolean.TRUE);
                 } else {
                     square.setFill(Color.WHITE);
-                    configurations.put(numbers, false);
+                    status.add(i*5+j, Boolean.FALSE);
                 }
             }
         }
@@ -95,29 +97,25 @@ public class MainWindowController {
             @Override
             public void run() {
                 prev = false;
-                for (int i =0; i<rows; i++) {
-                    for (int j = 0; j <columns; j++) {
-                        Rectangle r = getNodeWithColumnAndIndex(MainPane, j, i);
-                        if (r!=null) {
+                for (int i =  0; i<status.size(); i++) {
+                    if (status.get(i).equals(Boolean.TRUE)) {
+                        int XPoint = i/5;
+                        int YPoint = i%5;
+                        Rectangle r = getNodeWithColumnAndIndex(MainPane, YPoint, XPoint);
+                        if (r != null) {
                             r.setFill(Color.WHITE);
                         }
                     }
                 }
-                //create the code to clean the gridpane and to make the application change with the clicked mouse
             }
-        }, 2000);
-    }
-
-    private void updatePane(GridPane gp) throws InterruptedException{
-        Thread.sleep(5000);
-        gp.getChildren().clear();
+        }, 10000);
     }
 
     private Rectangle getNodeWithColumnAndIndex(GridPane gp, int column, int row) {
         ObservableList<Node> list = gp.getChildren();
         for (Node n : list) {
             if (gp.getRowIndex(n).equals(row) && gp.getColumnIndex(n).equals(column)) {
-                return(Rectangle) n;
+                return (Rectangle) n;
             }
         }
         return null;
