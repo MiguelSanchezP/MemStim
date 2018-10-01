@@ -101,3 +101,19 @@
     -fx-background-color: lightgray;
     -fx-padding: 50px 50px;
 }
+
+
+.newGameBtnDef {
+    -fx-background-color: Blue;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 200px;
+    -fx-max-width: 300px;
+    -fx-effect: dropshadow(three-pass-box, royalblue, 5, 0, 10, 10);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.newGameBtnDef:hover {
+    -fx-background-color: darkBlue;
+    -fx-effect: dropshadow(three-pass-box, blue, 5, 0, 3, 3);
+}
