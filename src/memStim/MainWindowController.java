@@ -3,6 +3,7 @@
 package memStim;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -23,7 +24,7 @@ public class MainWindowController {
 
     private Stage primaryStage = new Stage();
     private double x, y;
-    private ArrayList<Boolean> status= new ArrayList<>();
+    private ArrayList<Boolean> status = new ArrayList<>();
     private boolean prev = true;
 
     @FXML
@@ -48,12 +49,12 @@ public class MainWindowController {
                 MainPane.setColumnIndex(square, j);
                 MainPane.setRowIndex(square, i);
                 square.setStroke(Color.GREY);
-                if (random<1) {
+                if (random < 1) {
                     square.setFill(Color.BLACK);
-                    status.add(i*5+j, Boolean.TRUE);
+                    status.add(i * 5 + j, Boolean.TRUE);
                 } else {
                     square.setFill(Color.WHITE);
-                    status.add(i*5+j, Boolean.FALSE);
+                    status.add(i * 5 + j, Boolean.FALSE);
                 }
             }
         }
@@ -71,14 +72,14 @@ public class MainWindowController {
             public void handle(MouseEvent e) {
                 x = e.getX();
                 y = e.getY();
-                int X = (int)(x/(width/rows));
-                int Y = (int)(y/(height/columns));
+                int X = (int) (x / (width / rows));
+                int Y = (int) (y / (height / columns));
                 if (!prev) {
                     Rectangle r = getNodeWithColumnAndIndex(MainPane, X, Y);
-                    if (r!=null) {
+                    if (r != null) {
                         if (r.getFill().equals(Color.WHITE)) {
                             r.setFill(Color.BLACK);
-                        }else{
+                        } else {
                             r.setFill(Color.WHITE);
                         }
                     }
@@ -96,10 +97,10 @@ public class MainWindowController {
             @Override
             public void run() {
                 prev = false;
-                for (int i =  0; i<status.size(); i++) {
+                for (int i = 0; i < status.size(); i++) {
                     if (status.get(i).equals(Boolean.TRUE)) {
-                        int XPoint = i/5;
-                        int YPoint = i%5;
+                        int XPoint = i / 5;
+                        int YPoint = i % 5;
                         Rectangle r = getNodeWithColumnAndIndex(MainPane, YPoint, XPoint);
                         if (r != null) {
                             r.setFill(Color.WHITE);
@@ -108,6 +109,18 @@ public class MainWindowController {
                 }
             }
         }, 10000);
+        if (button.isPressed()) {
+            correctLayout(MainPane, status, handleButtonConfirm(MainPane, rows, columns));
+        }
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (!prev) {
+                    correctLayout(MainPane, status, handleButtonConfirm(MainPane, rows, columns));
+                }
+            }
+        });
     }
 
     private Rectangle getNodeWithColumnAndIndex(GridPane gp, int column, int row) {
@@ -118,5 +131,39 @@ public class MainWindowController {
             }
         }
         return null;
+    }
+
+    private ArrayList<Boolean> handleButtonConfirm(GridPane gp, int r, int c) {
+        ArrayList<Boolean> userInput = new ArrayList<>();
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                Rectangle rec = getNodeWithColumnAndIndex(gp, j, i);
+                if (rec != null) {
+                    if (rec.getFill().equals(Color.WHITE)) {
+                        userInput.add(i * 5 + j, Boolean.FALSE);
+                    } else {
+                        userInput.add(i * 5 + j, Boolean.TRUE);
+                    }
+                }
+            }
+        }
+        return userInput;
+    }
+
+    private void correctLayout(GridPane gp, ArrayList<Boolean> m, ArrayList<Boolean> u) {
+        for (int i = 0; i < m.size(); i++) {
+            int column = i%5;
+            int row = i/5;
+            Rectangle r = getNodeWithColumnAndIndex(gp, column, row);
+            if (r != null) {
+                if (m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.TRUE)) {
+                    r.setFill(Color.GREEN);
+                } else if (!m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.TRUE)) {
+                    r.setFill(Color.YELLOW);
+                } else if (!m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.FALSE)){
+                    r.setFill(Color.RED);
+                }
+            }
+        }
     }
 }
