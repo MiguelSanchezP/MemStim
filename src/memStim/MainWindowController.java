@@ -1,5 +1,3 @@
-/* Add the method to memorize the prev configuration and revise the current one (Button Confirm)*/
-
 package memStim;
 
 import javafx.collections.ObservableList;
@@ -152,9 +150,7 @@ public class MainWindowController {
 
     private void correctLayout(GridPane gp, ArrayList<Boolean> m, ArrayList<Boolean> u) {
         for (int i = 0; i < m.size(); i++) {
-            int column = i%5;
-            int row = i/5;
-            Rectangle r = getNodeWithColumnAndIndex(gp, column, row);
+            Rectangle r = getNodeWithColumnAndIndex(gp, i%5, i/5);
             if (r != null) {
                 if (m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.TRUE)) {
                     r.setFill(Color.GREEN);
