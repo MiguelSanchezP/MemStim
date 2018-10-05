@@ -33,28 +33,6 @@ public class MainWindowController {
         int columns = 5;
         MainPane.setPrefWidth(600);
         MainPane.setPrefHeight(600);
-//        for (int i = 0; i < rows; i++) {
-//            for (int j = 0; j < columns; j++) {
-//                int random = (int) (Math.random() * 4);
-//                Rectangle square = new Rectangle();
-//                double sqHeight = height / rows;
-//                double sqWidth = width / columns;
-//                square.setHeight(sqHeight);
-//                square.setWidth(sqWidth);
-//                MainPane.getChildren().add(square);
-//                MainPane.setColumnIndex(square, j);
-//                MainPane.setRowIndex(square, i);
-//                square.setStroke(Color.GREY);
-//                if (random < 1) {
-//                    square.setFill(Color.BLACK);
-//                    status.add(i * 5 + j, Boolean.TRUE);
-//                } else {
-//                    square.setFill(Color.WHITE);
-//                    status.add(i * 5 + j, Boolean.FALSE);
-//                }
-//            }
-//        }
-
         createLayout(ap, MainPane, MainPane.getPrefWidth(), MainPane.getPrefHeight(), rows, columns);
     }
 
