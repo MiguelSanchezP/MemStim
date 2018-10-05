@@ -33,8 +33,32 @@ public class MainWindowController {
         int columns = 5;
         MainPane.setPrefWidth(600);
         MainPane.setPrefHeight(600);
-        double height = MainPane.getPrefHeight();
-        double width = MainPane.getPrefWidth();
+//        for (int i = 0; i < rows; i++) {
+//            for (int j = 0; j < columns; j++) {
+//                int random = (int) (Math.random() * 4);
+//                Rectangle square = new Rectangle();
+//                double sqHeight = height / rows;
+//                double sqWidth = width / columns;
+//                square.setHeight(sqHeight);
+//                square.setWidth(sqWidth);
+//                MainPane.getChildren().add(square);
+//                MainPane.setColumnIndex(square, j);
+//                MainPane.setRowIndex(square, i);
+//                square.setStroke(Color.GREY);
+//                if (random < 1) {
+//                    square.setFill(Color.BLACK);
+//                    status.add(i * 5 + j, Boolean.TRUE);
+//                } else {
+//                    square.setFill(Color.WHITE);
+//                    status.add(i * 5 + j, Boolean.FALSE);
+//                }
+//            }
+//        }
+
+        createLayout(ap, MainPane, MainPane.getPrefWidth(), MainPane.getPrefHeight(), rows, columns);
+    }
+
+    private void createLayout (AnchorPane ap, GridPane gp, double width, double height, int columns, int rows) {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 int random = (int) (Math.random() * 4);
@@ -43,9 +67,9 @@ public class MainWindowController {
                 double sqWidth = width / columns;
                 square.setHeight(sqHeight);
                 square.setWidth(sqWidth);
-                MainPane.getChildren().add(square);
-                MainPane.setColumnIndex(square, j);
-                MainPane.setRowIndex(square, i);
+                gp.getChildren().add(square);
+                gp.setColumnIndex(square, j);
+                gp.setRowIndex(square, i);
                 square.setStroke(Color.GREY);
                 if (random < 1) {
                     square.setFill(Color.BLACK);
@@ -56,16 +80,16 @@ public class MainWindowController {
                 }
             }
         }
-        ap.getChildren().add(MainPane);
-        MainPane.setAlignment(Pos.CENTER);
+        ap.getChildren().add(gp);
+        gp.setAlignment(Pos.CENTER);
         Button button = new Button();
         button.setText("Confirm");
         button.setPrefHeight(30.0);
         ap.getChildren().add(button);
         ap.setBottomAnchor(button, 0.0);
         ap.setRightAnchor(button, 0.0);
-        ap.setBottomAnchor(MainPane, 30.0);
-        MainPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        ap.setBottomAnchor(gp, 30.0);
+        gp.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
                 x = e.getX();
@@ -73,7 +97,7 @@ public class MainWindowController {
                 int X = (int) (x / (width / rows));
                 int Y = (int) (y / (height / columns));
                 if (!prev) {
-                    Rectangle r = getNodeWithColumnAndIndex(MainPane, X, Y);
+                    Rectangle r = getNodeWithColumnAndIndex(gp, X, Y);
                     if (r != null) {
                         if (r.getFill().equals(Color.WHITE)) {
                             r.setFill(Color.BLACK);
@@ -99,7 +123,7 @@ public class MainWindowController {
                     if (status.get(i).equals(Boolean.TRUE)) {
                         int XPoint = i / 5;
                         int YPoint = i % 5;
-                        Rectangle r = getNodeWithColumnAndIndex(MainPane, YPoint, XPoint);
+                        Rectangle r = getNodeWithColumnAndIndex(gp, YPoint, XPoint);
                         if (r != null) {
                             r.setFill(Color.WHITE);
                         }
@@ -108,14 +132,14 @@ public class MainWindowController {
             }
         }, 10000);
         if (button.isPressed()) {
-            correctLayout(MainPane, status, handleButtonConfirm(MainPane, rows, columns));
+            correctLayout(gp, status, handleButtonConfirm(gp, rows, columns));
         }
 
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (!prev) {
-                    correctLayout(MainPane, status, handleButtonConfirm(MainPane, rows, columns));
+                    correctLayout(gp, status, handleButtonConfirm(gp, rows, columns));
                 }
             }
         });
