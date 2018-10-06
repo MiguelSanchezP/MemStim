@@ -24,45 +24,35 @@ public class MainWindowController {
     private double x, y;
     private ArrayList<Boolean> status = new ArrayList<>();
     private boolean prev = true;
+    private boolean next = false;
+    private Scene scene;
 
     @FXML
     private void handleNewGameBtn() {
         AnchorPane ap = new AnchorPane();
-        GridPane MainPane = new GridPane();
         int rows = 5;
         int columns = 5;
-        MainPane.setPrefWidth(600);
-        MainPane.setPrefHeight(600);
-        createLayout(ap, MainPane, MainPane.getPrefWidth(), MainPane.getPrefHeight(), rows, columns);
+
+        scene = new Scene(ap, 600, 630);
+        createLayout(ap, rows, columns);
     }
 
-    private void createLayout (AnchorPane ap, GridPane gp, double width, double height, int columns, int rows) {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                int random = (int) (Math.random() * 4);
-                Rectangle square = new Rectangle();
-                double sqHeight = height / rows;
-                double sqWidth = width / columns;
-                square.setHeight(sqHeight);
-                square.setWidth(sqWidth);
-                gp.getChildren().add(square);
-                gp.setColumnIndex(square, j);
-                gp.setRowIndex(square, i);
-                square.setStroke(Color.GREY);
-                if (random < 1) {
-                    square.setFill(Color.BLACK);
-                    status.add(i * 5 + j, Boolean.TRUE);
-                } else {
-                    square.setFill(Color.WHITE);
-                    status.add(i * 5 + j, Boolean.FALSE);
-                }
-            }
-        }
+    private void createLayout (AnchorPane ap, int columns, int rows) {
+        status.clear();
+        next=false;
+        prev=true;
+        double height = 600;
+        double width = 600;
+        ap.getChildren().removeAll();
+        GridPane gp = runNextLayout(rows, columns, height, width);
         ap.getChildren().add(gp);
+//        runNextLayout(gp, rows, columns, height, width);
+//        ap.getChildren().add(gp);
         gp.setAlignment(Pos.CENTER);
         Button button = new Button();
         button.setText("Confirm");
         button.setPrefHeight(30.0);
+        ap.getChildren().remove(button);
         ap.getChildren().add(button);
         ap.setBottomAnchor(button, 0.0);
         ap.setRightAnchor(button, 0.0);
@@ -86,7 +76,7 @@ public class MainWindowController {
                 }
             }
         });
-        Scene scene = new Scene(ap, 600, 630);
+//        scene = new Scene(ap, 600, 630);
         primaryStage.setTitle("MemStim");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -108,19 +98,54 @@ public class MainWindowController {
                     }
                 }
             }
-        }, 10000);
-        if (button.isPressed()) {
-            correctLayout(gp, status, handleButtonConfirm(gp, rows, columns));
-        }
+        }, 4000);
 
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (!prev) {
-                    correctLayout(gp, status, handleButtonConfirm(gp, rows, columns));
+                    if (correctLayout(gp, status, handleButtonConfirm(gp, rows, columns), button)) {
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                next = true;
+                            }
+                        }, 2000);
+                        if (next) {
+                            createLayout(ap, columns, rows);
+                        }
+                    }
                 }
             }
         });
+    }
+
+    private GridPane runNextLayout (int rows, int columns, double height, double width) {
+        GridPane gp = new GridPane();
+        gp.setPrefWidth(width);
+        gp.setPrefHeight(height);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                int random = (int) (Math.random() * 4);
+                Rectangle square = new Rectangle();
+                double sqHeight = height / rows;
+                double sqWidth = width / columns;
+                square.setHeight(sqHeight);
+                square.setWidth(sqWidth);
+                gp.getChildren().add(square);
+                gp.setColumnIndex(square, j);
+                gp.setRowIndex(square, i);
+                square.setStroke(Color.GREY);
+                if (random < 1) {
+                    square.setFill(Color.BLACK);
+                    status.add(i * 5 + j, Boolean.TRUE);
+                } else {
+                    square.setFill(Color.WHITE);
+                    status.add(i * 5 + j, Boolean.FALSE);
+                }
+            }
+        }
+        return gp;
     }
 
     private Rectangle getNodeWithColumnAndIndex(GridPane gp, int column, int row) {
@@ -150,18 +175,33 @@ public class MainWindowController {
         return userInput;
     }
 
-    private void correctLayout(GridPane gp, ArrayList<Boolean> m, ArrayList<Boolean> u) {
+    private Boolean correctLayout(GridPane gp, ArrayList<Boolean> m, ArrayList<Boolean> u, Button btn) {
+        int tempCorrect=0;
+        int tempPainted =0;
+        for (Boolean b : m) {
+            if (b.equals(Boolean.TRUE)) {
+                tempPainted+=1;
+            }
+        }
         for (int i = 0; i < m.size(); i++) {
             Rectangle r = getNodeWithColumnAndIndex(gp, i%5, i/5);
+//            System.out.println("reached here" + i);
             if (r != null) {
                 if (m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.TRUE)) {
                     r.setFill(Color.GREEN);
+                    tempCorrect+=1;
                 } else if (!m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.TRUE)) {
                     r.setFill(Color.YELLOW);
                 } else if (!m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.FALSE)){
                     r.setFill(Color.RED);
                 }
             }
+        }
+        if (tempCorrect == tempPainted) {
+            System.out.println("Reached here");
+            return true;
+        }else{
+            return false;
         }
     }
 }
