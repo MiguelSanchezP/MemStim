@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class MainWindowController {
 
@@ -25,6 +26,7 @@ public class MainWindowController {
     private ArrayList<Boolean> status = new ArrayList<>();
     private boolean prev = true;
     private boolean next = false;
+    private boolean bool = false;
     private Scene scene;
 
     @FXML
@@ -103,21 +105,36 @@ public class MainWindowController {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                bool = false;
+                Timer timer1 = new Timer();
                 if (!prev) {
-                    if (correctLayout(gp, status, handleButtonConfirm(gp, rows, columns), button)) {
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                next = true;
-                            }
-                        }, 2000);
-                        if (next) {
+//                    if (correctLayout(gp, status, handleButtonConfirm(gp, rows, columns), button)) {
+//                        timer1.schedule(new TimerTask() {
+//                            @Override
+//                            public void run() {
+//                                next=true;
+//                            }
+//                        }, 2000);
+//                    next =  correctLayout(gp, status, handleButtonConfirm(gp, rows, columns), button);
+                    try {
+                        paintTheLayout(gp, status, handleButtonConfirm(gp, rows, columns));
+                        TimeUnit.SECONDS.sleep(3);
+                    }catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+//                    timer1.schedule(new TimerTask() {
+//                        @Override
+//                        public void run() {
+//                            System.out.println("Waiting while corrected");
+//                        }
+//                    }, 2000);
+                    bool = correctLayout(gp, status, handleButtonConfirm(gp, rows, columns), button);
+                        if (bool) {
                             createLayout(ap, columns, rows);
                         }
                     }
                 }
-            }
-        });
+            });
     }
 
     private GridPane runNextLayout (int rows, int columns, double height, double width) {
@@ -184,24 +201,53 @@ public class MainWindowController {
             }
         }
         for (int i = 0; i < m.size(); i++) {
+            Rectangle r = getNodeWithColumnAndIndex(gp, i % 5, i / 5);
+//            System.out.println("reached here" + i);
+            if (r != null) {
+                if (m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.TRUE)) {
+                    r.setFill(Color.GREEN);
+                    tempCorrect += 1;
+                }
+//                } else if (!m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.TRUE)) {
+//                    r.setFill(Color.YELLOW);
+//                } else if (!m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.FALSE)){
+//                    r.setFill(Color.RED);
+//                }
+//            }
+            }
+        }
+//        for (int i = 0; i<1; i++) {
+//            Timer timer = new Timer();
+//            timer.schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    System.out.println("Reached there");
+//                }
+//            }, 2000);
+//        }
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//        }catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        return (tempCorrect == tempPainted);
+    }
+
+    private void paintTheLayout (GridPane gp, ArrayList<Boolean> m, ArrayList<Boolean> u) {
+        for (int i = 0; i < m.size(); i++) {
             Rectangle r = getNodeWithColumnAndIndex(gp, i%5, i/5);
 //            System.out.println("reached here" + i);
             if (r != null) {
                 if (m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.TRUE)) {
                     r.setFill(Color.GREEN);
-                    tempCorrect+=1;
+                    System.out.println("reached there");
+//                    tempCorrect+=1;
                 } else if (!m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.TRUE)) {
                     r.setFill(Color.YELLOW);
                 } else if (!m.get(i).equals(u.get(i)) && m.get(i).equals(Boolean.FALSE)){
                     r.setFill(Color.RED);
                 }
             }
-        }
-        if (tempCorrect == tempPainted) {
-            System.out.println("Reached here");
-            return true;
-        }else{
-            return false;
         }
     }
 }
